@@ -1,5 +1,3 @@
-application: task-manager-marshall
-version: 1
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -7,6 +5,8 @@ threadsafe: yes
 handlers:
 - url: .*
   script: main.application
+- url: /hello
+  script: hello.application
 
 libraries:
 - name: webapp2
