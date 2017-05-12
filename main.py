@@ -6,4 +6,4 @@ class MainPage(webapp2.RequestHandler):
 		message = '<p>The time is: %s</p>' % datetime.datetime.now()
 		self.response.out.write(message)
 
-application = webapp2.WSGIApplication([('/', MainPage)], debug=True)
+application = webapp2.WSGIApplication([('/register', MainPage)], debug=True)
