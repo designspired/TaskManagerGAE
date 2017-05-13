@@ -12,6 +12,6 @@ class Login(webapp2.RequestHandler):
 		self.response.out.write(message)
 
 application = webapp2.WSGIApplication([
-	webapp2.Route(r'/register', Register),
-	webapp2.Route(r'/login', Login)
+	('/register', Register),
+	('/login', Login)
 	], debug=True)
