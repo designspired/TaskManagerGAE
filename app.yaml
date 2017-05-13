@@ -15,3 +15,9 @@ libraries:
   version: "2.5.2"
 - name: MySQLdb
   version: "1.2.5" 
+
+env_variables:
+  CLOUDSQL_CONNECTION_NAME: task-manager-marshall:asia-east1:taskmanagergae
+  CLOUDSQL_USER: root
+  CLOUDSQL_DB: taskmanager
+  CLOUDSQL_PASSWORD: SantaClaus1225^^
