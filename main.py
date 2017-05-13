@@ -1,10 +1,22 @@
 import datetime
 import webapp2
+import json
 
 class Register(webapp2.RequestHandler):
 	def post(self):
 		name = self.request.POST.get("name")
-		self.response.out.write(name)
+		email = self.request.POST.get("email")
+		password = self.request.POST.get("password")
+
+		userdata = {
+			'name': name,
+			'email': email,
+			'password': password
+		}
+
+		jsondata = json.dumps(userdata)
+
+		self.response.out.write(jsondata)
 
 class Login(webapp2.RequestHandler):
 	def post(self):
