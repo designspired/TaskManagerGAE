@@ -21,17 +21,14 @@ class Database:
 
 	def registerNewUser(self, uniqueId, name, email, password, currentTime):
 		try:
-			query = """
-				INSERT INTO users
-				(`unique_id`, `name`, `email`, `password`)
-				VALUES
-				(uniqueId, name, email, password);
-				"""
+			query = "INSERT INTO users VALUES(%s, %s, %s, %s)" % \ (uniqueId, name, email, password)
 			self.cursor.execute(query)
 			self.cursor.close()
 
 		except:
 			self.connection.rollback()
+
+		self.connection.close()
 
 	def __del__(self):
 		self.connection.close()
