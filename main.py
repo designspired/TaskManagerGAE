@@ -11,8 +11,7 @@ from hello2 import Hello
 # Cloud SQL Instance
 _instance = 'task-manager-marshall:asia-east1:taskmanagergae'
 
-if(os.getenv('SERVER_SOFTWARE') and os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/'):
-	db = MySQLdb.connect(unix_socket='/cloudsql/' + _instance, db='taskmanager', user='root', password='SantaClaus1225^^', charset='utf-8')
+db = MySQLdb.connect(unix_socket='/cloudsql/' + _instance, db='taskmanager', user='root', password='SantaClaus1225^^', charset='utf-8')
 
 class Register(webapp2.RequestHandler):
 	def post(self):
