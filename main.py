@@ -31,7 +31,7 @@ class Register(webapp2.RequestHandler):
 
 		jsondata = json.dumps(userdata) 
 		
-		self.response.out.write(i)
+		self.response.out.write(uniqueId)
 
 class Login(webapp2.RequestHandler):
 	def post(self):
