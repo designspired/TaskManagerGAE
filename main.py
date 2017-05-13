@@ -29,9 +29,9 @@ class Register(webapp2.RequestHandler):
 
 		i = db.registerNewUser(uuid, name, email, password, currentTime)
 
-		jsondata = json.dumps(i) 
+		jsondata = json.dumps(userdata) 
 		
-		self.response.out.write(uniqueId)
+		self.response.out.write(i)
 
 class Login(webapp2.RequestHandler):
 	def post(self):
