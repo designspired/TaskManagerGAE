@@ -1,7 +1,6 @@
 import datetime
 import webapp2
 import json
-import MySQLdb
 from hello2 import Hello
 
 class Register(webapp2.RequestHandler):
