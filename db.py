@@ -17,7 +17,7 @@ class Database:
 
 	def registerNewUser(self, uniqueId, name, email, password, currentTime):
 		cursor = self.db.cursor()
-		cursor.execute("""INSERT INTO users (unique_id, name, email, password) VALUES ('uniqueId', 'name', 'email', 'password');""")
+		cursor.execute("""INSERT INTO users (unique_id, name, email, password) VALUES (uniqueId, name, email, password);""")
 		self.db.commit()
 		row = cursor.fetchall()
 		return row
