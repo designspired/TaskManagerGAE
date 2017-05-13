@@ -17,13 +17,7 @@ class Database:
 
 	def registerNewUser(self, query):
 		cursor = self.db.cursor()
-		db = self.db
-		try:
-			cursor.execute(query)
-			db.commit()
-		except:
-			db.rollback()
-		
+		cursor.execute(query)
 		row = cursor.fetchall()
 		return row
 
