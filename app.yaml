@@ -5,6 +5,8 @@ threadsafe: yes
 handlers:
 - url: /register
   script: main.application
+- url: /login
+  script: main.application
 - url: /hello
   script: hello.application
 
