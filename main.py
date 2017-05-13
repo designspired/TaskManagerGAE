@@ -7,13 +7,10 @@ import pyfcm
 import uuid
 
 from hello2 import Hello
-
-# Cloud SQL Instance
-_instance = 'task-manager-marshall:asia-east1:taskmanagergae'
-
-db = MySQLdb.connect(unix_socket='/cloudsql/' + _instance, db='taskmanager', user='root', passwd='SantaClaus1225^^')
+from db import Database
 
 class Register(webapp2.RequestHandler):
+
 	def post(self):
 		name = self.request.POST.get("name")
 		email = self.request.POST.get("email")		
@@ -26,11 +23,20 @@ class Register(webapp2.RequestHandler):
 			'password': password
 		}
 
-		
+		uniqueId = uuid.uuid4()
+		currentTime = datetime.datetime.now()
+
+		db = Database()
+		query = """
+			INSERT INTO users (`unique_id`, `name`, `email`, `password`, `created_at`)
+			VALUES
+			(uniqueId, name, email, password, currentTime)
+			"""
+
+		db.registerNewUser(query)
 
 		jsondata = json.dumps(userdata) 
 		
-		uniqueId = uuid.uuid4()
 		self.response.out.write(uniqueId)
 
 class Login(webapp2.RequestHandler):
