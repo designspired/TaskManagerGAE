@@ -28,7 +28,8 @@ class Register(webapp2.RequestHandler):
 
 		db = Database()
 		query = """
-			INSERT INTO users (`unique_id`, `name`, `email`, `password`, `created_at`)
+			INSERT INTO users 
+			(`unique_id`, `name`, `email`, `password`, `created_at`)
 			VALUES
 			(uniqueId, name, email, password, currentTime)
 			"""
