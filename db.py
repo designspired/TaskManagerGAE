@@ -23,6 +23,7 @@ class Database:
 			self.connection.commit()
 		except:
 			self.connection.rollback()
+		return self.cursor.fetchall()
 
 	def __del__(self):
 		self.connection.close()

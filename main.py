@@ -33,9 +33,9 @@ class Register(webapp2.RequestHandler):
 			(uniqueId, name, email, password, currentTime);
 			"""
 
-		db.registerNewUser(query)
+		i = db.registerNewUser(query)
 
-		jsondata = json.dumps(userdata) 
+		jsondata = json.dumps(i) 
 		
 		self.response.out.write(uniqueId)
 
