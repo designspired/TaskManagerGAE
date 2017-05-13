@@ -22,12 +22,12 @@ class Register(webapp2.RequestHandler):
 			'password': password
 		}
 
-		uniqueId = uuid.uuid4()
+		uniqueId = str(uuid.uuid4())
 		currentTime = datetime.datetime.now()
 
 		db = Database()
 
-		i = db.registerNewUser(uuid, name, email, password, currentTime)
+		i = db.registerNewUser(uniqueId, name, email, password, currentTime)
 
 		jsondata = json.dumps(userdata) 
 		
