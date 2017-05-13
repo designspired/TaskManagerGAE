@@ -2,7 +2,7 @@ import datetime
 import webapp2
 import json
 import MySQLdb
-import hello2
+from hello2 import Hello
 
 class Register(webapp2.RequestHandler):
 	def post(self):
