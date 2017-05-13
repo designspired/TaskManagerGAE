@@ -14,7 +14,6 @@ class Database:
 			db = MySQLdb.connect(unix_socket=cloudsql_unix_socket, db=self.cloudsql_db, user=self.cloudsql_user, passwd=self.cloudsql_password)
 		else:
 			db = MySQLdb.connect(host='127.0.0.1', db=self.cloudsql_db, user=self.cloudsql_user, password=self.cloudsql_password)
-		return db
 
 	def registerNewUser(self, query):
 		try:
