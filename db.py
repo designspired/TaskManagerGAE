@@ -21,12 +21,14 @@ class Database:
 
 	def registerNewUser(self, uniqueId, name, email, password, currentTime):
 		try:
-			self.cursor.execute("""INSERT INTO users (unique_id, name, email, password) VALUES (uniqueId, name, email, password);""")
-			self.connection.commit()
-
-			row = self.cursor.fetchall()
+			query = """
+				INSERT INTO users
+				(`unique_id`, `name`, `email`, `password`)
+				VALUES
+				(uniqueId, name, email, password);
+				"""
+			self.cursor.execute(query)
 			self.cursor.close()
-			return row
 
 		except:
 			self.connection.rollback()
