@@ -15,7 +15,7 @@ class Database:
 		else:
 			self.connection = MySQLdb.connect(host='127.0.0.1', db=self.cloudsql_db, user=self.cloudsql_user, password=self.cloudsql_password)
 
-		self.cursor = db.cursor()
+		self.cursor = self.connection.cursor()
 
 	def registerNewUser(self, query):
 		try:
