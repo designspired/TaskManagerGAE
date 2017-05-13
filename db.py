@@ -2,7 +2,7 @@ import MySQLdb
 
 class Database:
 
-	host = '/cloudsql/task-manager-marshall:asia-east1:taskmanagergae'
+	host = '/cloudsql/task-manager-marshall:taskmanagergae'
 	db = 'taskmanager'
 	user = 'root'
 	passwd = 'SantaClaus1225^^'
