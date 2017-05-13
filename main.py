@@ -26,14 +26,8 @@ class Register(webapp2.RequestHandler):
 		currentTime = datetime.datetime.now()
 
 		db = Database()
-		query = """
-			INSERT INTO users 
-			(`unique_id`, `name`, `email`, `password`, `created_at`)
-			VALUES
-			(uniqueId, name, email, password, currentTime);
-			"""
 
-		i = db.registerNewUser(query)
+		i = db.registerNewUser(uuid, name, email, password, currentTime)
 
 		jsondata = json.dumps(i) 
 		

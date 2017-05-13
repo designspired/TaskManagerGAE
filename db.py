@@ -15,9 +15,9 @@ class Database:
 		else:
 			self.db = MySQLdb.connect(host='127.0.0.1', db=self.cloudsql_db, user=self.cloudsql_user, password=self.cloudsql_password)
 
-	def registerNewUser(self, query):
+	def registerNewUser(self, uniqueId, name, email, password, currentTime):
 		cursor = self.db.cursor()
-		cursor.execute(query)
+		cursor.execute("""INSERT INTO users VALUES (%s, %s, %s, %s, %s)""", (uniqueId, name, email, pasword, currentTime)
 		row = cursor.fetchall()
 		return row
 
