@@ -3,6 +3,7 @@ import webapp2
 import json
 import MySQLdb
 import pyfcm
+import uuid
 
 from hello2 import Hello
 
@@ -21,7 +22,8 @@ class Register(webapp2.RequestHandler):
 
 		jsondata = json.dumps(userdata) 
 		
-		self.response.out.write(jsondata)
+		uniqueId = uuid.uuid4()
+		self.response.out.write(uniqueId)
 
 class Login(webapp2.RequestHandler):
 	def post(self):
