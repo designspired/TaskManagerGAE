@@ -2,7 +2,7 @@ import datetime
 import webapp2
 
 class Register(webapp2.RequestHandler):
-	def post(self, body):
+	def get(self, body):
 		self.response.out.write(body)
 
 class Login(webapp2.RequestHandler):
