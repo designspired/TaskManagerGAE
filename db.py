@@ -11,20 +11,18 @@ class Database:
 
 		if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine/'):
 			cloudsql_unix_socket = os.path.join('/cloudsql', self.cloudsql_connection_name)
-			self.db = MySQLdb.connect(unix_socket=cloudsql_unix_socket, db=self.cloudsql_db, user=self.cloudsql_user, passwd=self.cloudsql_password)
+			self.connection = MySQLdb.connect(unix_socket=cloudsql_unix_socket, db=self.cloudsql_db, user=self.cloudsql_user, passwd=self.cloudsql_password)
+			self.cursor = self.connection.cursor()
 		else:
-			self.db = MySQLdb.connect(host='127.0.0.1', db=self.cloudsql_db, user=self.cloudsql_user, password=self.cloudsql_password)
+			self.connection = MySQLdb.connect(host='127.0.0.1', db=self.cloudsql_db, user=self.cloudsql_user, password=self.cloudsql_password)
+			self.cursor = self.connection.cursor()
 
 	def registerNewUser(self, uniqueId, name, email, password, currentTime):
-		cursor = self.db.cursor()
-
 		try:
-			cursor.execute("""INSERT INTO users (unique_id, name, email, password) VALUES (uniqueId, name, email, password);""")
-			self.db.commit()
+			self.cursor.execute("""INSERT INTO users (unique_id, name, email, password) VALUES (uniqueId, name, email, password);""")
+			self.connection.commit()
 		except:
-			self.db.rollback()
-
-		self.db.close()
+			self.connection.rollback()
 
 	def __del__(self):
 		self.connection.close()
