@@ -1,6 +1,8 @@
 import datetime
 import webapp2
 import json
+import MySQLdb
+
 from hello2 import Hello
 
 class Register(webapp2.RequestHandler):
@@ -16,12 +18,9 @@ class Register(webapp2.RequestHandler):
 			'password': password
 		}
 
-		jsondata = json.dumps(userdata)
-
-		i = Hello()
-		j = i.call() 
+		jsondata = json.dumps(userdata) 
 		
-		self.response.out.write(j)
+		self.response.out.write(jsondata)
 
 class Login(webapp2.RequestHandler):
 	def post(self):
