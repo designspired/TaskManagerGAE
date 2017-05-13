@@ -2,9 +2,8 @@ import datetime
 import webapp2
 
 class Register(webapp2.RequestHandler):
-	def post(self):
-		message = '<p>The time is: %s</p>' % datetime.datetime.now()
-		self.response.out.write(message)
+	def post(self, body):
+		self.response.out.write(body)
 
 class Login(webapp2.RequestHandler):
 	def post(self):
