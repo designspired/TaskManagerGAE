@@ -62,14 +62,6 @@ class Database:
 
 		return loginResult
 
-	def changePassword(self, email, newPassword):
-		query = """UPDATE users SET password=%s WHERE email=%s"""
-		self.cursor.execute(query, [newPassword, email])
-
-	def changeUsername(self, email, newName):
-		query = """UPDATE users SET name=%s WHERE email=%s"""
-		self.cursor.execute(query, [newName, email])
-
 	def userAlreadyExists(self, email):
 		query = """SELECT * FROM users WHERE email IN (%s)"""
 		self.cursor.execute(query, [email])
