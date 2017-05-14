@@ -38,12 +38,10 @@ class Database:
 			self.connection.close()
 
 	def userAlreadyExists(self, email):
-		query = """SELECT email FROM users WHERE email IN (%s)"""
+		query = """SELECT * FROM users WHERE email IN (%s)"""
 		self.cursor.execute(query, [email])
-		result = self.cursor.fetchone()
-		count = result[0]
 
-		if count >= 1:
+		if self.cursor.rowcount >= 1:
 			return True
 		else:
 			return False
