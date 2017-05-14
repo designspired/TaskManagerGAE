@@ -37,7 +37,7 @@ class Message(webapp2.RequestHandler):
 
 class LoadFriendsList(webapp2.RequestHandler):
 	def post(self):
-        global db
+		global db
 		uid = self.request.POST.get("uid")
         
 		result = db.loadFriendsList(uid)
