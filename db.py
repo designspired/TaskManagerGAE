@@ -71,11 +71,11 @@ class Database:
 			return False
 
     def loadFriendsList(self, uid):
-        query = """SELECT * FROM friends where sender_uid IN (%s) OR receiver_uid IN (%s) AND status IN (%s)"""
+        query = """SELECT * FROM friends where sender_uid=%s OR receiver_uid=%s AND status=%s"""
         
         friendslist = list()
         status = FriendStatus()
-        self.cursor.execute(query, [uid, uid, status.pending])
+        self.cursor.execute(query, [uid, uid, status.friend])
         while row is not None:
             row = self.cursor.fetchone()
             if uid == row['sender_uid']:
