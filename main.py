@@ -27,10 +27,12 @@ class Register(webapp2.RequestHandler):
 		db = Database()
 
 		result = db.registerNewUser(uniqueId, name, email, password)
-		if result == True:
-			message = 'true'
+		if result == 'success':
+			message = 'success'
+		elif result == 'user already exists'
+			message = 'user already exists'
 		else:
-			message = 'false'
+			message = 'failure'
 
 		jsondata = json.dumps(userdata) 
 		

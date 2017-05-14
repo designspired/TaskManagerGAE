@@ -20,17 +20,18 @@ class Database:
 	def registerNewUser(self, uniqueId, name, email, password):
 
 		if Database.userAlreadyExists(self, email) == True:
-			return False
+			return 'user_already_exists'
 
 		else:
 			try:
 				query = """INSERT INTO users (unique_id, name, email, password) VALUES (%s, %s, %s, %s)"""
 				self.cursor.execute(query, (uniqueId, name, email, password))
 				self.connection.commit()
-				return True
+				return 'success'
 
 			except:
 				self.connection.rollback()
+				return 'error'
 
 			finally:
 				self.cursor.close()
