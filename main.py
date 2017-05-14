@@ -1,10 +1,6 @@
 import datetime
 import webapp2
-import json
-import MySQLdb
-import pyfcm
 
-from hello2 import Hello
 from db import Database
 
 class Register(webapp2.RequestHandler):
