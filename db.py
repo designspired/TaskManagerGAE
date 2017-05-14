@@ -1,5 +1,6 @@
 import os
 import MySQLdb
+from friendstatus import FriendStatus
 
 class Database:
 	def __init__(self):
@@ -68,5 +69,27 @@ class Database:
 		else:
 			return False
 
+    def loadFriendsList(self, uid):
+        query = """SELECT * FROM friends where sender_uid IN (%s) OR receiver_uid IN (%s) AND status IN (%s)"""
+        
+        list = []
+        status = FriendStatus()
+        self.cursor.execute(query, [uid, uid, status.pending])
+        while row is not None:
+            row = self.cursor.fetchone()
+            if uid == row['sender_uid']:
+                friendUid = row['receiver_uid']
+            elif uid == row['receiver_uid']:
+                friendUid = row['sender_uid']
+    
+            fetch = """SELECT * FROM users WHERE unique_id IN (%s)"""
+            self.cursor.execute(fetch, [friendUid])
+                
+            while row is not None:
+                row_array['uid'] = row['unique_id']
+                row_array['name'] = row['name']
+                row_array['email'] = row['email']
+                list.append(row_array)
+                
 	def __del__(self):
 		self.connection.close()
