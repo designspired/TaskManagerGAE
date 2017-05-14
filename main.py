@@ -8,16 +8,15 @@ from hello2 import Hello
 from db import Database
 
 class Register(webapp2.RequestHandler):
-
 	def post(self):
 		name = self.request.POST.get("name")
 		email = self.request.POST.get("email")				
 		password = self.request.POST.get("password")
-		uniqueId = self.request.POST.get("uid")
+		uid = self.request.POST.get("uid")
 
 		db = Database()
 
-		result = db.registerNewUser(uniqueId, name, email, password)
+		result = db.registerNewUser(uid, name, email, password)
 		self.response.out.write(result)
 
 class Login(webapp2.RequestHandler):

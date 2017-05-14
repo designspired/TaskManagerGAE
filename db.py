@@ -3,7 +3,6 @@ import json
 import MySQLdb
 
 class Database:
-
 	def __init__(self):
 		self.cloudsql_connection_name = os.environ.get('CLOUDSQL_CONNECTION_NAME')
 		self.cloudsql_user = os.environ.get('CLOUDSQL_USER')
@@ -18,15 +17,14 @@ class Database:
 			self.connection = MySQLdb.connect(host='127.0.0.1', db=self.cloudsql_db, user=self.cloudsql_user, password=self.cloudsql_password)
 			self.cursor = self.connection.cursor()
 
-	def registerNewUser(self, uniqueId, name, email, password):
-
+	def registerNewUser(self, uid, name, email, password):
 		if Database.userAlreadyExists(self, email) == True:
 			return 'user already exists'
 
 		else:
 			try:
 				query = """INSERT INTO users (unique_id, name, email, password) VALUES (%s, %s, %s, %s)"""
-				self.cursor.execute(query, [uniqueId, name, email, password])
+				self.cursor.execute(query, [uid, name, email, password])
 				self.connection.commit()
 				return 'success'
 
