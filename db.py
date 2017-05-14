@@ -39,7 +39,7 @@ class Database:
 
 	def userAlreadyExists(self, email):
 		query = """SELECT email FROM users WHERE email IN (%s)"""
-		self.cursor.execute(query, (email))
+		self.cursor.execute(query, [email])
 		result = self.cursor.fetchone()
 		count = result[0]
 
