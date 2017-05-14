@@ -96,6 +96,21 @@ class Database:
 
 		jsonlist = json.dumps(friendslist)
 		return jsonlist
-                
+
+	def searchFriends(self, name):
+		query = """SELECT unique_id, name, email FROM users WHERE name LIKE (%s)"""
+		self.cursor.execute(query, [name])
+
+		resultlist = list()
+		resultrow = self.cursor.fetchone()
+		while resultrow is not None:
+			row_array['uid'] = resultrow['unique_id']
+			row_array['name'] = resultrow['name']
+			row_array['email'] = resultrow['email']
+			resultlist.append(row_array)
+
+		jsonlist = json.dumps(resultlist)
+		return jsonlist
+
 	def __del__(self):
 		self.connection.close()

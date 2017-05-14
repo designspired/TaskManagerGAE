@@ -46,7 +46,11 @@ class LoadFriendsList(webapp2.RequestHandler):
 
 class SearchFriends(webapp2.RequestHandler):
 	def post(self):
-		pass
+		global db
+		name = self.request.POST.get("name")
+
+		result = db.searchFriends(name)
+		self.response.out.write(result)
 
 class UpdateUserInfo(webapp2.RequestHandler):
 	def post(self):
