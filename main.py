@@ -12,8 +12,7 @@ class Register(webapp2.RequestHandler):
 
 	def post(self):
 		name = self.request.POST.get("name")
-		email = self.request.POST.get("email")		
-		
+		email = self.request.POST.get("email")				
 		password = self.request.POST.get("password")
 
 		userdata = {
