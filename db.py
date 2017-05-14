@@ -31,7 +31,7 @@ class Database:
 
 			except:
 				self.connection.rollback()
-				return 'error'
+				return 'failure'
 
 			finally:
 				self.cursor.close()
