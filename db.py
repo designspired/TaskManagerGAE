@@ -43,8 +43,10 @@ class Database:
 		result = self.cursor.fetchone()
 		count = result[0]
 
-		if count >= 1 return True
-		else return False
+		if count >= 1:
+			return True
+		else:
+			return False
 
 	def __del__(self):
 		self.connection.close()
