@@ -87,12 +87,14 @@ class Database:
             self.cursor.execute(fetch, [friendUid])
                 
             while row is not None:
+				row = self.cursor.fetchone()
                 row_array['uid'] = row['unique_id']
                 row_array['name'] = row['name']
                 row_array['email'] = row['email']
                 friendslist.append(row_array)
 
-		return friendslist
+		jsonlist = json.dumps(friendslist)
+		return jsonlist
                 
 	def __del__(self):
 		self.connection.close()
