@@ -1,0 +1,3 @@
+from pyfcm import FCMNotification
+
+push_service = FCMNotification(api_key="AAAACqlZruA:APA91bHHRGv080ZTLLyoo6lWXpBRim-riqiDrA83Zdab1p0ose7xFlgFLdneDe83qsvPTqK8jPtgBEgacnGtCZ1uCZ006nhHJbqAnjXKT57WU6WOtGHr7Dmv0rbk10emzQ5a8L1weBI5"

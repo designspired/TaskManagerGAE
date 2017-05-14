@@ -3,7 +3,6 @@ import webapp2
 import json
 import MySQLdb
 import pyfcm
-import uuid
 
 from hello2 import Hello
 from db import Database
@@ -14,22 +13,11 @@ class Register(webapp2.RequestHandler):
 		name = self.request.POST.get("name")
 		email = self.request.POST.get("email")				
 		password = self.request.POST.get("password")
-
-		userdata = {
-			'name': name,
-			'email': email,
-			'password': password
-		}
-
-		uniqueId = str(uuid.uuid4())
-		currentTime = datetime.datetime.now()
+		uniqueId = self.request.POST.get("uid")
 
 		db = Database()
 
 		result = db.registerNewUser(uniqueId, name, email, password)
-
-		jsondata = json.dumps(userdata) 
-		
 		self.response.out.write(result)
 
 class Login(webapp2.RequestHandler):
@@ -37,7 +25,32 @@ class Login(webapp2.RequestHandler):
 		message = 'Hello'
 		self.response.out.write(message)
 
+class UploadImage(webapp2.RequestHandler):
+	def post(self):
+
+
+class FriendRequest(webapp2.RequestHandler):
+	def post(self):
+
+class Message(webapp2.RequestHandler):
+	def post(self):
+
+class LoadFriendsList(webapp2.RequestHandler):
+	def post(self):
+
+class SearchFriends(webapp2.RequestHandler):
+	def post(self):
+
+class UpdateUserInfo(webapp2.RequestHandler):
+	def post(self):
+
 application = webapp2.WSGIApplication([
 	('/register', Register),
-	('/login', Login)
+	('/login', Login),
+	('/uploadimage', UploadImage),
+	('/friendrequest', FriendRequest),
+	('/message', Message),
+	('/loadfriendslist', LoadFriendsList),
+	('/searchfriends', SearchFriends),
+	('/updateuserinfo', UpdateUserInfo),
 	], debug=True)

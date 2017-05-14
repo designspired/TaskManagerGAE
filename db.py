@@ -1,4 +1,5 @@
 import os
+import json
 import MySQLdb
 
 class Database:
@@ -37,6 +38,37 @@ class Database:
 				self.cursor.close()
 
 			self.connection.close()
+
+	def loginUser(self, email, password):
+		query = """SELECT * FROM users WHERE email IN (%s)"""
+		self.cursor.execute(query, [email])
+		result = self.cursor.fetchall()
+		for row in result:
+			storedPassword = row['password']
+
+		if password == storedPassword:
+			uniqueId = row['unique_id']
+			name = row['name']
+
+			loginResult = {
+				'uid': uniqueId,
+				'name': name,
+				'email': email,
+				'password': password
+			}
+
+		else:
+			loginResult = 'Wrong password.'
+
+		return loginResult
+
+	def changePassword(self, email, newPassword):
+		query = """UPDATE users SET password=%s WHERE email=%s"""
+		self.cursor.execute(query, [newPassword, email])
+
+	def changeUsername(self, email, newName):
+		query = """UPDATE users SET name=%s WHERE email=%s"""
+		self.cursor.execute(query, [newName, email])
 
 	def userAlreadyExists(self, email):
 		query = """SELECT * FROM users WHERE email IN (%s)"""

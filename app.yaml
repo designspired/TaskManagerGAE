@@ -7,6 +7,18 @@ handlers:
   script: main.application
 - url: /login
   script: main.application
+- url: /uploadimage
+  script: main.application
+- url: /friendrequest
+  script: main.application
+- url: /message
+  script: main.application
+- url: /loadfriendslist
+  script: main.application
+- url: /searchfriends
+  script: main.application
+- url: /updateuserinfo
+  script: main.application
 - url: /hello
   script: hello.application
 
