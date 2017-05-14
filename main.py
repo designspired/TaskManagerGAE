@@ -3,16 +3,17 @@ import webapp2
 
 from db import Database
 
+db = Database()
+
 class Register(webapp2.RequestHandler):
 	def post(self):
+		firebase_token = self.request.POST.get("firebase_token")
 		name = self.request.POST.get("name")
 		email = self.request.POST.get("email")				
 		password = self.request.POST.get("password")
 		uid = self.request.POST.get("uid")
 
-		db = Database()
-
-		result = db.registerNewUser(uid, name, email, password)
+		result = db.registerNewUser(uid, firebase_token, name, email, password)
 		self.response.out.write(result)
 
 class Login(webapp2.RequestHandler):
@@ -34,7 +35,8 @@ class Message(webapp2.RequestHandler):
 
 class LoadFriendsList(webapp2.RequestHandler):
 	def post(self):
-		pass
+		uid = self.request.POST.get("uid")
+		
 
 class SearchFriends(webapp2.RequestHandler):
 	def post(self):

@@ -16,14 +16,14 @@ class Database:
 			self.connection = MySQLdb.connect(host='127.0.0.1', db=self.cloudsql_db, user=self.cloudsql_user, password=self.cloudsql_password)
 			self.cursor = self.connection.cursor()
 
-	def registerNewUser(self, uid, name, email, password):
+	def registerNewUser(self, uid, firebase_token, name, email, password):
 		if Database.userAlreadyExists(self, email) == True:
 			return 'user already exists'
 
 		else:
 			try:
-				query = """INSERT INTO users (unique_id, name, email, password) VALUES (%s, %s, %s, %s)"""
-				self.cursor.execute(query, (uid, name, email, password))
+				query = """INSERT INTO users (unique_id, firebase_token, name, email, password) VALUES (%s, %s, %s, %s, %s)"""
+				self.cursor.execute(query, (uid, firebase_token, name, email, password))
 				self.connection.commit()
 				return 'success'
 
