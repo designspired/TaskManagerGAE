@@ -7,9 +7,11 @@ db = Database()
 
 class Register(webapp2.RequestHandler):
 	def post(self):
+		global db
+
 		firebase_token = self.request.POST.get("firebase_token")
 		name = self.request.POST.get("name")
-		email = self.request.POST.get("email")				
+		email = self.request.POST.get("email")	
 		password = self.request.POST.get("password")
 		uid = self.request.POST.get("uid")
 
