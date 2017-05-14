@@ -18,16 +18,33 @@ class Database:
 			self.cursor = self.connection.cursor()
 
 	def registerNewUser(self, uniqueId, name, email, password):
-		try:
-			query = """INSERT INTO users (unique_id, name, email, password) VALUES (%s, %s, %s, %s)"""
-			self.cursor.execute(query, (uniqueId, name, email, password))
-			self.connection.commit()
-			self.cursor.close()
 
-		except:
-			self.connection.rollback()
+		if userAlreadyExists(email) == True:
+			return False
 
-		self.connection.close()
+		else:
+			try:
+				query = """INSERT INTO users (unique_id, name, email, password) VALUES (%s, %s, %s, %s)"""
+				self.cursor.execute(query, (uniqueId, name, email, password))
+				self.connection.commit()
+				return True
+
+			except:
+				self.connection.rollback()
+
+			finally:
+				self.cursor.close()
+
+			self.connection.close()
+
+	def userAlreadyExists(self, email):
+		query = """SELECT email FROM users WHERE email IN (%s)"""
+		self.cursor.execute(query, (email))
+		result = self.cursor.fetchone()
+		count = result[0]
+
+		if count >= 1 return True
+		else return False
 
 	def __del__(self):
 		self.connection.close()
