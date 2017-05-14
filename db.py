@@ -17,12 +17,11 @@ class Database:
 			self.connection = MySQLdb.connect(host='127.0.0.1', db=self.cloudsql_db, user=self.cloudsql_user, password=self.cloudsql_password)
 			self.cursor = self.connection.cursor()
 
-		self.connection.autocommit(True)
-
-	def registerNewUser(self, uniqueId, name, email, password, currentTime):
+	def registerNewUser(self, uniqueId, name, email, password):
 		try:
-			query = "INSERT INTO users VALUES(%s, %s, %s, %s)" % \ (uniqueId, name, email, password)
-			self.cursor.execute(query)
+			query = """INSERT INTO users (unique_id, name, email, password) VALUES (%s, %s, %s, %s)"""
+			self.cursor.execute(query, (uniqueId, name, email, password))
+			self.connection.commit()
 			self.cursor.close()
 
 		except:
