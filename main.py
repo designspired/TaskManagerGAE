@@ -29,7 +29,7 @@ class Register(webapp2.RequestHandler):
 		result = db.registerNewUser(uniqueId, name, email, password)
 		if result == 'success':
 			message = 'success'
-		elif result == 'user already exists'
+		elif result == 'user already exists':
 			message = 'user already exists'
 		else:
 			message = 'failure'
