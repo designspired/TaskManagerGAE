@@ -17,8 +17,7 @@ class Register(webapp2.RequestHandler):
 		db = Database()
 
 		result = db.registerNewUser(uid, name, email, password)
-
-		self.response.out.write('bye')
+		self.response.out.write(result)
 
 class Login(webapp2.RequestHandler):
 	def post(self):
