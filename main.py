@@ -40,6 +40,8 @@ class LoadFriendsList(webapp2.RequestHandler):
         global db
 		uid = self.request.POST.get("uid")
         
+		result = db.loadFriendsList(uid)
+		self.response.out.write(result)
 
 
 class SearchFriends(webapp2.RequestHandler):

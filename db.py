@@ -1,4 +1,5 @@
 import os
+import json
 import MySQLdb
 from friendstatus import FriendStatus
 
@@ -90,6 +91,8 @@ class Database:
                 row_array['name'] = row['name']
                 row_array['email'] = row['email']
                 list.append(row_array)
+
+		return list
                 
 	def __del__(self):
 		self.connection.close()
