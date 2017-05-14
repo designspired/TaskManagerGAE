@@ -73,7 +73,7 @@ class Database:
     def loadFriendsList(self, uid):
         query = """SELECT * FROM friends where sender_uid IN (%s) OR receiver_uid IN (%s) AND status IN (%s)"""
         
-        list = []
+        friendslist = list()
         status = FriendStatus()
         self.cursor.execute(query, [uid, uid, status.pending])
         while row is not None:
@@ -90,9 +90,9 @@ class Database:
                 row_array['uid'] = row['unique_id']
                 row_array['name'] = row['name']
                 row_array['email'] = row['email']
-                list.append(row_array)
+                friendslist.append(row_array)
 
-		return list
+		return friendslist
                 
 	def __del__(self):
 		self.connection.close()
