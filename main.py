@@ -52,5 +52,5 @@ application = webapp2.WSGIApplication([
 	('/message', Message),
 	('/loadfriendslist', LoadFriendsList),
 	('/searchfriends', SearchFriends),
-	('/updateuserinfo', UpdateUserInfo),
+	('/updateuserinfo', UpdateUserInfo)
 	], debug=True)
