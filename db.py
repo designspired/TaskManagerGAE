@@ -76,21 +76,22 @@ class Database:
 		friendslist = list()
 		status = FriendStatus()
 		self.cursor.execute(query, [uid, uid, status.friend])
-		while row is not None:
-			row = self.cursor.fetchone()
-			if uid == row['sender_uid']:
-				friendUid = row['receiver_uid']
-			elif uid == row['receiver_uid']:
-				friendUid = row['sender_uid']
+
+		friendsrow = self.cursor.fetchone()
+		while friendsrow is not None:
+			if uid == friendsrow['sender_uid']:
+				friendUid = friendsrow['receiver_uid']
+			elif uid == friendsrow['receiver_uid']:
+				friendUid = friendsrow['sender_uid']
     
 			fetch = """SELECT * FROM users WHERE unique_id IN (%s)"""
 			self.cursor.execute(fetch, [friendUid])
-                
-			while row is not None:
-				row = self.cursor.fetchone()
-				row_array['uid'] = row['unique_id']
-				row_array['name'] = row['name']
-				row_array['email'] = row['email']
+
+			inforow = self.cursor.fetchone()
+			while inforow is not None:
+				row_array['uid'] = inforow['unique_id']
+				row_array['name'] = inforow['name']
+				row_array['email'] = inforow['email']
 				friendslist.append(row_array)
 
 		jsonlist = json.dumps(friendslist)
