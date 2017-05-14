@@ -1,5 +1,4 @@
 import os
-import json
 import MySQLdb
 
 class Database:
@@ -24,7 +23,7 @@ class Database:
 		else:
 			try:
 				query = """INSERT INTO users (unique_id, name, email, password) VALUES (%s, %s, %s, %s)"""
-				self.cursor.execute(query, [uid, name, email, password])
+				self.cursor.execute(query, (uid, name, email, password))
 				self.connection.commit()
 				return 'success'
 

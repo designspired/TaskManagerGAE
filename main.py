@@ -1,6 +1,5 @@
 import datetime
 import webapp2
-import request
 
 from db import Database
 
@@ -23,22 +22,27 @@ class Login(webapp2.RequestHandler):
 
 class UploadImage(webapp2.RequestHandler):
 	def post(self):
-
+		pass
 
 class FriendRequest(webapp2.RequestHandler):
 	def post(self):
+		pass
 
 class Message(webapp2.RequestHandler):
 	def post(self):
+		pass
 
 class LoadFriendsList(webapp2.RequestHandler):
 	def post(self):
+		pass
 
 class SearchFriends(webapp2.RequestHandler):
 	def post(self):
+		pass
 
 class UpdateUserInfo(webapp2.RequestHandler):
 	def post(self):
+		pass
 
 application = webapp2.WSGIApplication([
 	('/register', Register),
