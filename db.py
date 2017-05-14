@@ -19,7 +19,7 @@ class Database:
 
 	def registerNewUser(self, uniqueId, name, email, password):
 
-		if Database.userAlreadyExists(email) == True:
+		if Database.userAlreadyExists(self, email) == True:
 			return False
 
 		else:
